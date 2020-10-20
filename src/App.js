@@ -5,6 +5,7 @@ import { Provider, useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
+import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
 import store from './redux/store';
 import Admin from './routes/admin';
 import Auth from './routes/auth';
@@ -13,6 +14,8 @@ import config from './config/config';
 import ProtectedRoute from './components/utilities/protectedRoute';
 
 const { theme } = config;
+const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
 const ProviderConfig = () => {
   const { rtl, isLoggedIn, topMenu, darkMode } = useSelector(state => {
@@ -23,6 +26,7 @@ const ProviderConfig = () => {
       isLoggedIn: state.auth.login,
     };
   });
+  const { loginWithPopup } = useAuth0();
 
   const [path, setPath] = useState(window.location.pathname);
 
@@ -51,9 +55,11 @@ const ProviderConfig = () => {
 
 function App() {
   return (
-    <Provider store={store}>
-      <ProviderConfig />
-    </Provider>
+    <Auth0Provider domain={domain} clientId={clientId}>
+      <Provider store={store}>
+        <ProviderConfig />
+      </Provider>
+    </Auth0Provider>
   );
 }
 
