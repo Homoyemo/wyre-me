@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { hot } from 'react-hot-loader/root';
 import { Provider, useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
-import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, useHistory } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
-import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
+import { Auth0Provider } from '@auth0/auth0-react';
 import store from './redux/store';
 import Admin from './routes/admin';
 import Auth from './routes/auth';
@@ -26,7 +26,6 @@ const ProviderConfig = () => {
       isLoggedIn: state.auth.login,
     };
   });
-  const { loginWithPopup } = useAuth0();
 
   const [path, setPath] = useState(window.location.pathname);
 
@@ -54,12 +53,21 @@ const ProviderConfig = () => {
 };
 
 function App() {
+  const history = useHistory();
+  const onRedirectCallback = appState => {
+    history.push(appState?.returnTo || window.location.pathname);
+  };
   return (
-    <Auth0Provider domain={domain} clientId={clientId}>
-      <Provider store={store}>
+    <Provider store={store}>
+      <Auth0Provider
+        onRedirectCallback={onRedirectCallback}
+        domain={domain}
+        clientId={clientId}
+        redirectUri={window.location.origin + process.env.PUBLIC_URL}
+      >
         <ProviderConfig />
-      </Provider>
-    </Auth0Provider>
+      </Auth0Provider>
+    </Provider>
   );
 }
 

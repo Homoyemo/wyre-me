@@ -4,6 +4,7 @@ import { Form, Input, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { FacebookOutlined, TwitterOutlined } from '@ant-design/icons';
+import { useAuth0 } from '@auth0/auth0-react';
 import { AuthWrapper } from './style';
 import { login } from '../../../../redux/authentication/actionCreator';
 import { Checkbox } from '../../../../components/checkbox/checkbox';
@@ -26,7 +27,9 @@ const SignIn = () => {
   const onChange = checked => {
     setState({ ...state, checked });
   };
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
 
+  console.log(isAuthenticated);
   return (
     <AuthWrapper>
       <p className="auth-notice">
@@ -59,6 +62,24 @@ const SignIn = () => {
               {isLoading ? 'Loading...' : 'Sign In'}
             </Button>
           </Form.Item>
+          <button
+            type="button"
+            onClick={e => {
+              e.preventDefault();
+              loginWithRedirect();
+            }}
+          >
+            Auth0 Login
+          </button>
+          <button
+            type="button"
+            onClick={e => {
+              e.preventDefault();
+              logout();
+            }}
+          >
+            Auth0 logout
+          </button>
           <p className="form-divider">
             <span>Or</span>
           </p>
