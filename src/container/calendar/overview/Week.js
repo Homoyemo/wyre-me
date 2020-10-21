@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import FeatherIcon from 'feather-icons-react';
 import { Link, NavLink } from 'react-router-dom';
 import moment from 'moment';
@@ -30,6 +30,32 @@ const WeekCalendar = () => {
   });
 
   const { currentWeek, maxWeek, minWeek, defaultValue, year } = state;
+
+  useLayoutEffect(() => {
+    const calenderDom = document.querySelectorAll('.ant-picker-calendar-date-content');
+    calenderDom.forEach(element => {
+      element.addEventListener('click', e => {
+        if (e.target.classList[0] === 'ant-picker-calendar-date-content') {
+          const getDate = moment(e.currentTarget.getAttribute('title')).format('YYYY-MM-DD');
+          setState({
+            defaultValue: getDate,
+            currentWeek,
+            maxWeek,
+            minWeek,
+            year,
+          });
+          dispatch(eventVisible(true));
+        }
+      });
+    });
+    setState({
+      currentWeek,
+      maxWeek,
+      minWeek,
+      defaultValue,
+      year,
+    });
+  }, [currentWeek, maxWeek, minWeek, defaultValue, year, dispatch]);
 
   const onIncrement = () => {
     return currentWeek < maxWeek
@@ -244,7 +270,14 @@ const WeekCalendar = () => {
 
   return (
     <Cards headless>
-      <Modal footer={null} type="primary" title="Create Event" visible={isVisible} onCancel={handleCancel}>
+      <Modal
+        className="addEvent-modal"
+        footer={null}
+        type="primary"
+        title="Create Event"
+        visible={isVisible}
+        onCancel={handleCancel}
+      >
         <AddNewEvent onHandleAddEvent={addNew} defaultValue={defaultValue} />
       </Modal>
       <div className="calendar-header">
@@ -374,7 +407,7 @@ const WeekCalendar = () => {
           </NavLink>
         </div>
       </div>
-      <table className="table-event event-week" width="100%">
+      <table className="table-event event-week table-responsive" width="100%">
         <thead>
           <tr>
             <th>&nbsp;</th>
@@ -393,26 +426,29 @@ const WeekCalendar = () => {
         <tbody>
           {eventTimes.map(time => {
             return (
-              <tr>
+              <tr key={time}>
                 <td>{time}</td>
                 {daysOfWeek().map(day => {
                   return (
                     <td
                       key={day}
-                      className={`currentTime ${
-                        moment().format('h A') === time && moment().format('MM/DD/YYYY') === day
-                          ? 'currsecondary'
-                          : null
+                      className={`ant-picker-calendar-date-content ${
+                        moment().format('h A') === time && moment().format('MM/DD/YYYY') === day ? 'current-data' : null
                       }`}
+                      title={day}
                     >
+                      {moment().format('h A') === time && moment().format('MM/DD/YYYY') === day ? (
+                        <span className="currentTime secondary" />
+                      ) : null}
                       {events.map(
                         event =>
                           day === event.date[0] &&
                           time === moment(event.time[0], 'h:mm a').format('h A') && (
                             <Dropdown
+                              className="event-dropdown"
                               key={event.id}
                               style={{ padding: 0 }}
-                              placement="bottomRight"
+                              placement="bottomLeft"
                               content={<ProjectUpdate onEventDelete={onEventDelete} {...event} />}
                               action={['click']}
                             >

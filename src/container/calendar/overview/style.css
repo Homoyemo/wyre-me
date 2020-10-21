@@ -1,38 +1,31 @@
-.ant-dropdown{
-    padding: 0 !important;
-    width: 320px !important;
+.bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 12px;
 }
-.ant-dropdown.ant-dropdown-placement-bottomRight {
-    width: 320px !important;
+html[dir='rtl'] .bullet {
+  margin-left: 12px;
+  margin-right: 0;
 }
-
-.bullet{
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right : 12px;
+.primary {
+  background: #5f63f2;
+  color: #fff;
 }
-html[dir="rtl"] .bullet{
-    margin-left : 12px;
+.secondary {
+  background: #ff69a5;
+  color: #fff;
 }
-.primary{
-    background: #5F63F2;
-    color: #fff;
+.success {
+  background: #20c997;
+  color: #fff;
 }
-.secondary{
-    background: #FF69A5;
-    color: #fff;
+.info {
+  background: #2c99ff;
+  color: #fff;
 }
-.success{
-    background: #20C997;
-    color: #fff;
-}
-.info{
-    background: #2C99FF;
-    color: #fff;
-}
-.warning{
-    background: #FA8B0C;
-    color: #fff;
+.warning {
+  background: #fa8b0c;
+  color: #fff;
 }

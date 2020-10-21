@@ -90,9 +90,10 @@ const Content = Styled.div`
     }
     .author-chatMeta{
       flex: .16;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
       @media (max-width: 991px){
-        display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
       }

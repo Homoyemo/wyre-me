@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import { Content, DropdownStyle } from './dropdown-style';
 
 const Dropdown = props => {
-  const { content, placement, title, action, children, style } = props;
+  const { content, placement, title, action, children, style, className } = props;
 
   return (
     <DropdownStyle
+      overlayClassName={className}
       style={style}
       placement={placement}
       title={title}
@@ -38,6 +39,7 @@ Dropdown.defaultProps = {
   placement: 'bottomCenter',
   content,
   style: {},
+  className: 'strikingDash-dropdown',
 };
 
 Dropdown.propTypes = {
@@ -47,6 +49,7 @@ Dropdown.propTypes = {
   content: PropTypes.node,
   children: PropTypes.node,
   style: PropTypes.object,
+  className: PropTypes.string,
 };
 
 export { Dropdown };

@@ -103,9 +103,10 @@ const MonthCalendar = () => {
       <ul className="events">
         {listData.map(item => (
           <Dropdown
+            className="event-dropdown"
             key={item.id}
             style={{ padding: 0 }}
-            placement="bottomRight"
+            placement="bottomLeft"
             content={<ProjectUpdate onEventDelete={onEventDelete} {...item} />}
             action={['click']}
           >
@@ -136,7 +137,14 @@ const MonthCalendar = () => {
 
   return (
     <Cards headless>
-      <Modal footer={null} type="primary" title="Create Event" visible={isVisible} onCancel={handleCancel}>
+      <Modal
+        className="addEvent-modal"
+        footer={null}
+        type="primary"
+        title="Create Event"
+        visible={isVisible}
+        onCancel={handleCancel}
+      >
         <AddNewEvent onHandleAddEvent={addNew} defaultValue={defaultValue} />
       </Modal>
       <div className="calendar-header">
@@ -184,7 +192,7 @@ const MonthCalendar = () => {
           </NavLink>
         </div>
       </div>
-      <BlockViewCalendarWrapper>
+      <BlockViewCalendarWrapper className="table-responsive">
         <Calendar
           headerRender={() => {
             return <></>;

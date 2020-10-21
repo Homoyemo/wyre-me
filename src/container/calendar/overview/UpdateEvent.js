@@ -3,6 +3,7 @@ import { DatePicker, Form, Input, Radio, Select } from 'antd';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
+import { AddEventWrap } from '../Style';
 import { BasicFormWrapper } from '../../styled';
 import { Button } from '../../../components/buttons/buttons';
 import { updateCurrentEvent } from '../../../redux/calendar/actionCreator';
@@ -24,6 +25,10 @@ const UpdateEvent = ({ data, onCancel }) => {
     endDate: moment(date[1]).format('YYYY-MM-DD'),
   });
 
+  const formItemLayout = {
+    labelCol: { span: 4 },
+    wrapperCol: { span: 20 },
+  };
   const [form] = Form.useForm();
   const handleSubmit = values => {
     dispatch(
@@ -52,84 +57,92 @@ const UpdateEvent = ({ data, onCancel }) => {
 
   return (
     <BasicFormWrapper>
-      <Form style={{ width: '100%' }} form={form} name="addNewEvent" onFinish={handleSubmit}>
-        <Form.Item initialValue={title} label="Title" name="title">
-          <Input placeholder="Write Your Event Title" />
-        </Form.Item>
+      <AddEventWrap>
+        <Form style={{ width: '100%' }} form={form} name="addNewEvent" onFinish={handleSubmit}>
+          <Form.Item {...formItemLayout} initialValue={title} label="Title" name="title">
+            <Input placeholder="Write Your Event Title" />
+          </Form.Item>
 
-        <Form.Item initialValue={type} name="type" label="Event Type">
-          <Radio.Group>
-            <Radio value="event">Event</Radio>
-            <Radio value="reminder">Reminder</Radio>
-            <Radio value="task">Task</Radio>
-          </Radio.Group>
-        </Form.Item>
+          <Form.Item {...formItemLayout} initialValue={type} name="type" label="Event Type">
+            <Radio.Group>
+              <Radio value="event">Event</Radio>
+              <Radio value="reminder">Reminder</Radio>
+              <Radio value="task">Task</Radio>
+            </Radio.Group>
+          </Form.Item>
+          <Form.Item {...formItemLayout} initialValue="event" name="type" label="Start">
+            <div className="date-time-picker d-flex">
+              <DatePicker
+                onChange={onChangeStart}
+                value={moment(state.startDate, dateFormat)}
+                defaultValue={moment(state.startDate, dateFormat)}
+              />
 
-        <DatePicker
-          onChange={onChangeStart}
-          value={moment(state.startDate, dateFormat)}
-          defaultValue={moment(state.startDate, dateFormat)}
-        />
+              <Form.Item initialValue={moment(time[0], 'HH:mm:ss')} name="startTime" label="">
+                <DatePicker picker="time" />
+              </Form.Item>
+            </div>
+          </Form.Item>
+          <Form.Item {...formItemLayout} initialValue="event" name="type" label="End">
+            <div className="date-time-picker d-flex">
+              <DatePicker
+                onChange={onChangeEnd}
+                value={moment(state.endDate, dateFormat)}
+                defaultValue={moment(state.endDate, dateFormat)}
+              />
 
-        <Form.Item initialValue={moment(time[0], 'HH:mm:ss')} name="startTime" label="">
-          <DatePicker picker="time" />
-        </Form.Item>
+              <Form.Item initialValue={moment(time[1], 'HH:mm:ss')} name="endTime" label="">
+                <DatePicker picker="time" />
+              </Form.Item>
+            </div>
+          </Form.Item>
 
-        <DatePicker
-          onChange={onChangeEnd}
-          value={moment(state.endDate, dateFormat)}
-          defaultValue={moment(state.endDate, dateFormat)}
-        />
+          <Form.Item {...formItemLayout} initialValue={description} name="description" label="Description">
+            <Input.TextArea placeholder="Write Your Description" />
+          </Form.Item>
 
-        <Form.Item initialValue={moment(time[1], 'HH:mm:ss')} name="endTime" label="">
-          <DatePicker picker="time" />
-        </Form.Item>
+          <Form.Item {...formItemLayout} initialValue={label} name="label" label="Label">
+            <Select style={{ width: '100%' }}>
+              <Option value="primary">
+                <span className="bullet primary" />
+                Primary
+              </Option>
+              <Option value="secondary">
+                <span className="bullet secondary" />
+                Secondary
+              </Option>
+              <Option value="success">
+                <span className="bullet success" />
+                success
+              </Option>
+              <Option value="warning">
+                <span className="bullet warning" />
+                Warning
+              </Option>
+              <Option value="info">
+                <span className="bullet info" />
+                Info
+              </Option>
+            </Select>
+          </Form.Item>
 
-        <Form.Item initialValue={description} name="description" label="Description">
-          <Input.TextArea placeholder="Write Your Description" />
-        </Form.Item>
-
-        <Form.Item initialValue={label} name="label" label="Label">
-          <Select style={{ width: '100%' }}>
-            <Option value="primary">
-              <span className="bullet primary" />
-              Primary
-            </Option>
-            <Option value="secondary">
-              <span className="bullet secondary" />
-              Secondary
-            </Option>
-            <Option value="success">
-              <span className="bullet success" />
-              success
-            </Option>
-            <Option value="warning">
-              <span className="bullet warning" />
-              Warning
-            </Option>
-            <Option value="info">
-              <span className="bullet info" />
-              Info
-            </Option>
-          </Select>
-        </Form.Item>
-
-        <Form.Item>
-          <div className="add-user-bottom text-right">
-            <Button
-              className="ant-btn ant-btn-light"
-              onClick={() => {
-                return form.resetFields();
-              }}
-            >
-              Reset
-            </Button>
-            <Button htmlType="submit" type="primary">
-              Update
-            </Button>
-          </div>
-        </Form.Item>
-      </Form>
+          <Form.Item>
+            <div className="add-event-footer text-right">
+              <Button
+                className="ant-btn ant-btn-white"
+                onClick={() => {
+                  return form.resetFields();
+                }}
+              >
+                Reset
+              </Button>
+              <Button htmlType="submit" type="primary">
+                Update
+              </Button>
+            </div>
+          </Form.Item>
+        </Form>
+      </AddEventWrap>
     </BasicFormWrapper>
   );
 };

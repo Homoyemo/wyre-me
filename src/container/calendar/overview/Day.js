@@ -39,12 +39,11 @@ const DayCalendar = () => {
     calenderDom.forEach(element => {
       element.addEventListener('click', e => {
         if (e.target.classList[0] === 'ant-picker-calendar-date-content') {
-          const getDate = moment(e.currentTarget.closest('td').getAttribute('title')).format('YYYY-MM-DD');
           setState({
             container: containers,
             date,
             currentLabel,
-            defaultValue: getDate,
+            defaultValue,
           });
 
           dispatch(eventVisible(true));
@@ -111,7 +110,14 @@ const DayCalendar = () => {
 
   return (
     <Cards headless>
-      <Modal footer={null} type="primary" title="Create Event" visible={isVisible} onCancel={handleCancel}>
+      <Modal
+        className="addEvent-modal"
+        footer={null}
+        type="primary"
+        title="Create Event"
+        visible={isVisible}
+        onCancel={handleCancel}
+      >
         <AddNewEvent onHandleAddEvent={addNew} defaultValue={defaultValue} />
       </Modal>
       <div className="calendar-header">
@@ -174,7 +180,11 @@ const DayCalendar = () => {
             return (
               <tr>
                 <td style={{ width: '60px' }}>{time}</td>
-                <td className={`${moment().format('h A') === time ? 'current-data' : null}`}>
+                <td
+                  className={`ant-picker-calendar-date-content ${
+                    moment().format('h A') === time ? 'current-data' : null
+                  }`}
+                >
                   {moment().format('h A') === time ? <span className="currentTime secondary" /> : null}
 
                   {events.map(
@@ -182,9 +192,10 @@ const DayCalendar = () => {
                       moment(defaultValue).format('MM/DD/YYYY') === event.date[0] &&
                       time === moment(event.time[0], 'h:mm a').format('h A') && (
                         <Dropdown
+                          className="event-dropdown"
                           key={event.id}
                           style={{ padding: 0 }}
-                          placement="bottomRight"
+                          placement="bottomLeft"
                           content={<ProjectUpdate onEventDelete={onEventDelete} {...event} />}
                           action={['click']}
                         >

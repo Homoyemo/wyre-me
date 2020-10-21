@@ -17,7 +17,14 @@ const ProjectUpdate = ({ title, id, description, label, onEventDelete, time, dat
   const onCancel = () => setVisible(false);
   return (
     <UpdatePopup>
-      <Modal footer={null} type="primary" title="Update Event" visible={visible} onCancel={onCancel}>
+      <Modal
+        className="addEvent-modal"
+        footer={null}
+        type="primary"
+        title="Update Event"
+        visible={visible}
+        onCancel={onCancel}
+      >
         <UpdateEvent onCancel={onCancel} data={data} />
       </Modal>
 
@@ -40,14 +47,17 @@ const ProjectUpdate = ({ title, id, description, label, onEventDelete, time, dat
           </div>
         </div>
         <div className="bodyUpdate">
-          <p>
-            <FeatherIcon icon="calendar" size={16} /> Date: {moment(date[0]).format('dddd, MMMM DD')}
+          <p className="event-info">
+            <FeatherIcon icon="calendar" size={16} /> <span className="label">Date:</span>{' '}
+            <strong>{moment(date[0]).format('dddd, MMMM DD')}</strong>
           </p>
-          <p>
-            <FeatherIcon icon="clock" size={16} /> Time: {`${time[0]} - ${time[1]}`}
+          <p className="event-info">
+            <FeatherIcon icon="clock" size={16} /> <span className="label">Time:</span>
+            <strong>{`${time[0]} - ${time[1]}`}</strong>
           </p>
-          <p>
-            <img src={require(`../../../static/img/icon/right.svg`)} alt="menu" /> {description}
+          <p className="event-info">
+            <img src={require(`../../../static/img/icon/right.svg`)} alt="menu" />{' '}
+            <span className="desc">{description}</span>
           </p>
         </div>
       </Cards>

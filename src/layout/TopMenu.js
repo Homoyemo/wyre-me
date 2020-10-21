@@ -13,11 +13,10 @@ const TopMenu = () => {
       const hasSubMenuLeft = active.closest('.has-subMenu-left');
       if (!megaMenu) {
         active.closest('ul').previousSibling.classList.add('active');
-        hasSubMenuLeft && hasSubMenuLeft.closest('ul').previousSibling.classList.add('active');
+        if (hasSubMenuLeft) hasSubMenuLeft.closest('ul').previousSibling.classList.add('active');
       } else {
         active.closest('.megaMenu-wrapper').previousSibling.classList.add('active');
       }
-      // active.closest('ul').previousSibling.classList.add('active');
     };
     window.addEventListener('load', active && activeDefault);
     return () => window.removeEventListener('load', activeDefault);
@@ -71,7 +70,8 @@ const TopMenu = () => {
             <Link className="parent">Apps</Link>
             <ul className="subMenu">
               <li>
-                <NavLink onClick={addParentActive} to={`${path}/app/calendar/year`}>
+                <NavLink onClick={addParentActive} to={`${path}/app/calendar/month`}>
+                  <FeatherIcon icon="calendar" />
                   Calendar
                 </NavLink>
               </li>
@@ -572,41 +572,57 @@ const TopMenu = () => {
                     <Link>Rechart</Link>
                     <ul className="subMenu">
                       <li>
-                        <NavLink to={`${path}/charts/recharts/bar`}>Bar Chart</NavLink>
+                        <NavLink onClick={addParentActive} to={`${path}/charts/recharts/bar`}>
+                          Bar Chart
+                        </NavLink>
                       </li>
                       <li>
-                        <NavLink to={`${path}/charts/recharts/area`}>Area Charts</NavLink>
+                        <NavLink onClick={addParentActive} to={`${path}/charts/recharts/area`}>
+                          Area Charts
+                        </NavLink>
                       </li>
                       <li>
-                        <NavLink to={`${path}/charts/recharts/composed`}>Composed Charts</NavLink>
+                        <NavLink onClick={addParentActive} to={`${path}/charts/recharts/composed`}>
+                          Composed Charts
+                        </NavLink>
                       </li>
                       <li>
-                        <NavLink to={`${path}/charts/recharts/line`}>Line Charts</NavLink>
+                        <NavLink onClick={addParentActive} to={`${path}/charts/recharts/line`}>
+                          Line Charts
+                        </NavLink>
                       </li>
                       <li>
-                        <NavLink to={`${path}/charts/recharts/pie`}>Pie Charts</NavLink>
+                        <NavLink onClick={addParentActive} to={`${path}/charts/recharts/pie`}>
+                          Pie Charts
+                        </NavLink>
                       </li>
                       <li>
-                        <NavLink to={`${path}/charts/recharts/radar`}>Radar Charts</NavLink>
+                        <NavLink onClick={addParentActive} to={`${path}/charts/recharts/radar`}>
+                          Radar Charts
+                        </NavLink>
                       </li>
                       <li>
-                        <NavLink to={`${path}/charts/recharts/radial`}>Radial Charts</NavLink>
+                        <NavLink onClick={addParentActive} to={`${path}/charts/recharts/radial`}>
+                          Radial Charts
+                        </NavLink>
                       </li>
                     </ul>
                   </li>
                   <li>
-                    <NavLink to={`${path}/charts/peity`}>Peity Chart</NavLink>
+                    <NavLink onClick={addParentActive} to={`${path}/charts/peity`}>
+                      Peity Chart
+                    </NavLink>
                   </li>
                 </ul>
               </li>
               <li>
-                <NavLink to={`${path}/tables`}>
+                <NavLink onClick={addParentActive} to={`${path}/tables`}>
                   <FeatherIcon icon="cpu" />
                   Table
                 </NavLink>
               </li>
               <li>
-                <NavLink to={`${path}/forms`}>
+                <NavLink onClick={addParentActive} to={`${path}/forms`}>
                   <FeatherIcon icon="disc" />
                   Form
                 </NavLink>
@@ -618,13 +634,19 @@ const TopMenu = () => {
                 </Link>
                 <ul className="subMenu">
                   <li>
-                    <NavLink to={`${path}/maps/google`}>Google Maps</NavLink>
+                    <NavLink onClick={addParentActive} to={`${path}/maps/google`}>
+                      Google Maps
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to={`${path}/maps/leaflet`}>Leaflet Maps</NavLink>
+                    <NavLink onClick={addParentActive} to={`${path}/maps/leaflet`}>
+                      Leaflet Maps
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to={`${path}/maps/Vector`}>Vector Maps</NavLink>
+                    <NavLink onClick={addParentActive} to={`${path}/maps/Vector`}>
+                      Vector Maps
+                    </NavLink>
                   </li>
                 </ul>
               </li>

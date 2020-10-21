@@ -64,7 +64,7 @@ const Calendars = () => {
       <Main>
         <CalendarWrapper>
           <Row gutter={25}>
-            <Col md={6}>
+            <Col xxl={6} xl={9} xs={24}>
               <Aside>
                 <Button onClick={onHandleVisible} className="btn-create" size="large" type="secondary">
                   <FeatherIcon icon="plus" size={14} /> Create New Event
@@ -96,7 +96,7 @@ const Calendars = () => {
                 </Cards>
               </Aside>
             </Col>
-            <Col md={18}>
+            <Col xxl={18} xl={15} xs={24}>
               <Switch>
                 <Suspense
                   fallback={

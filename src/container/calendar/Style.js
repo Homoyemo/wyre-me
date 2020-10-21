@@ -1,6 +1,10 @@
 import Styled from 'styled-components';
 
 const Aside = Styled.aside`
+    @media only screen and (max-width: 1199px){
+        max-width: 370px;
+        margin: 0 auto;
+    }
     .btn-create{
         height: 50px;
         font-size: 14px;
@@ -52,6 +56,20 @@ const CalendarWrapper = Styled.div`
         border: 0 none;
         background-color: #fff;
         box-shadow: 0 5px 20px ${({ theme }) => theme['light-color']}03;
+        @media only screen and (max-width: 575px){
+            padding: 15px;
+        }
+        .react-calendar__viewContainer{
+            .react-calendar__year-view__months__month {
+                &:hover{
+                    background-color: transparent;
+                }
+                &.react-calendar__tile--hasActive{
+                    background-color: transparent;
+                    color: ${({ theme }) => theme['primary-color']}
+                }
+            }
+        }
     }
     .react-calendar__navigation{
         margin-bottom: .5rem;
@@ -79,6 +97,9 @@ const CalendarWrapper = Styled.div`
                 font-weight: 500;
                 text-decoration: none;
                 color: ${({ theme }) => theme['light-color']};
+                @media only screen and (max-width: 1300px){
+                    font-size: 11px;
+                  }
             }
         }
     }
@@ -120,16 +141,38 @@ const CalendarWrapper = Styled.div`
         align-items: center;
         justify-content: space-between;
         margin-bottom: 25px;
+        @media only screen and (max-width: 1599px){
+            flex-flow: column;
+        }
         .calendar-header__left{
             display: flex;
             align-items: center;
             position: relative;
+            .react-calendar__viewContainer{
+                min-width: 320px;
+                border-radius: 8px;
+                padding: 15px !important;
+                border: 0 none !important;
+                box-shadow: rgba(82, 63, 105, 0.15) 0px 15px 40px 0px !important;
+                @media only screen and (max-width: 479px){
+                    min-width: 280px;
+                }
+            }
+            @media only screen and (max-width: 1599px){
+                margin-bottom: 20px;
+            }
+            @media only screen and (max-width: 479px){
+                flex-flow: column;
+            }
             .btn-today{
                 font-size: 13px;
                 font-weight: 500;
                 height: 34px;
                 color: ${({ theme }) => theme['gray-color']};
                 border-color: ${({ theme }) => theme['border-color-light']};
+                @media only screen and (max-width: 479px){
+                    margin-bottom: 15px;
+                }
             }
             .year-select{
                 .ant-select-selector{
@@ -147,10 +190,11 @@ const CalendarWrapper = Styled.div`
                 }
                 .ant-select-arrow{
                     right: 18px;
+                    ${({ theme }) => (theme.rtl ? 'left' : 'right')}: 18px;
                 }
             }
             .react-calendar{
-                margin-left: 30px;
+                ${({ theme }) => (theme.rtl ? 'margin-right' : 'margin-left')}: 30px;
                 padding: 0;
                 border: none;
                 .react-calendar__navigation{
@@ -188,7 +232,10 @@ const CalendarWrapper = Styled.div`
             .calender-head__navigation{
                 display: flex;
                 align-items: center;
-                margin-left: 30px;
+                ${({ theme }) => (theme.rtl ? 'margin-right' : 'margin-left')}: 30px;
+                @media only screen and (max-width: 479px){
+                    ${({ theme }) => (theme.rtl ? 'margin-right' : 'margin-left')}: 0px;
+                }
                 .btn-navigate{
                     width: 34px;
                     height: 34px;
@@ -209,6 +256,10 @@ const CalendarWrapper = Styled.div`
         }
         .calendar-header__right{
             display: flex;
+            @media only screen and (max-width: 479px){
+                flex-flow: column;
+                align-items: center;
+            }
             svg{
                 width: 14px;
             }
@@ -216,18 +267,21 @@ const CalendarWrapper = Styled.div`
                 li{
                     display: inline-block;
                     &:first-child{
-                        border-left: 1px solid ${({ theme }) => theme['border-color-light']};
+                        ${({ theme }) => (theme.rtl ? 'border-right' : 'border-left')}: 1px solid ${({ theme }) =>
+  theme['border-color-light']};
                     }
                     &:not(:first-child){
                         a{
-                            border-top-left-radius: 0px
-                            border-bottom-left-radius: 0px
+                            ${({ theme }) => (theme.rtl ? 'border-top-right-radius' : 'border-top-left-radius')}: 0px;
+                            ${({ theme }) =>
+                              theme.rtl ? 'border-bottom-right-radius' : 'border-bottom-left-radius'}: 0px;
                         }
                     }
                     &:not(:last-child){
                         a{
-                            border-top-right-radius: 0px
-                            border-bottom-right-radius: 0px
+                            ${({ theme }) => (theme.rtl ? 'border-top-left-radius' : 'border-top-right-radius')}: 0px;
+                            ${({ theme }) =>
+                              theme.rtl ? 'border-bottom-left-radius' : 'border-bottom-right-radius'}: 0px;
                         }
                     }
                     a{
@@ -235,7 +289,7 @@ const CalendarWrapper = Styled.div`
                         font-weight: 500;
                         color: ${({ theme }) => theme['light-color']};
                         border: 1px solid ${({ theme }) => theme['border-color-light']};
-                        border-left: 0px;
+                        ${({ theme }) => (theme.rtl ? 'border-right' : 'border-left')}: 0px;
                         display: block;
                         border-radius: 4px;
                         padding: 6px 13.24px;
@@ -249,13 +303,21 @@ const CalendarWrapper = Styled.div`
             }
             .schedule-list{
                 margin-left: 20px;
+                ${({ theme }) => (theme.rtl ? 'margin-right' : 'margin-left')}: 20px;
                 display: flex;
                 align-items: center;
                 color: ${({ theme }) => theme['light-color']};
+                @media only screen and (max-width: 479px){
+                    margin: 15px 0 0 0;
+                }
                 svg,
                 img,
                 i{
                     margin-right: 6px;
+                    ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 6px;
+                    color: ${({ theme }) => theme['primary-color']};
+                }
+                &.active{
                     color: ${({ theme }) => theme['primary-color']};
                 }
             }
@@ -263,7 +325,15 @@ const CalendarWrapper = Styled.div`
     }
 
     .table-event{
+        
         border: 1px solid ${({ theme }) => theme['border-color-light']};
+        &.table-responsive{
+            @media only screen and (max-width: 1599px){
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+            }
+        }
         tr{
             th,
             td{
@@ -272,7 +342,9 @@ const CalendarWrapper = Styled.div`
                 &:first-child{
                     min-width: 75px;
                     padding: 16px 18px 16px 18px;
-                    border-right: 1px solid ${({ theme }) => theme['border-color-light']};
+                    ${({ theme }) => (theme.rtl ? 'border-left' : 'border-right')}: 1px solid ${({ theme }) =>
+  theme['border-color-light']};
+                    
                 }
             }
         }
@@ -291,17 +363,19 @@ const CalendarWrapper = Styled.div`
             td{
                 padding: 0 10px;
                 font-size: 12px;
+                min-width: 140px;
                 color: ${({ theme }) => theme['light-color']};
                 .currentTime{
                     width: calc(100% + 20px);
                     height: 1px;
                     display: block;
                     position: relative;
-                    left: -10px;
+                    ${({ theme }) => (theme.rtl ? 'right' : 'left')}: -10px;
                     z-index: 222;
                     &:after{
                         position: absolute;
                         left: 0;
+                        ${({ theme }) => (theme.rtl ? 'right' : 'left')}: 0px;
                         top: -6px;
                         width: 12px;
                         height: 12px;
@@ -313,12 +387,14 @@ const CalendarWrapper = Styled.div`
                 .day-event-item{
                     width: 100%;
                     display: block;
+                    border-radius: 3px 6px 6px 3px;
                     padding: 6px 12px;
                     margin: 2px 0;
                     position: relative;
                     &:after{
                         position: absolute;
                         left: 0;
+                        ${({ theme }) => (theme.rtl ? 'right' : 'left')}: 0px;
                         bottom: 0;
                         width: 2px;
                         height: 100%;
@@ -328,8 +404,21 @@ const CalendarWrapper = Styled.div`
                     &.primary{
                         background-color: #EFEFFE;
                         color: ${({ theme }) => theme['primary-color']};
+                        &:hover{
+                            color: ${({ theme }) => theme['primary-color']};
+                        }
                         &:after{
                             background-color: ${({ theme }) => theme['primary-color']};
+                        }
+                    }
+                    &.secondary{
+                        background-color: #FFF0F6;
+                        color: ${({ theme }) => theme['secondary-color']};
+                        &:hover{
+                            color: ${({ theme }) => theme['secondary-color']};
+                        }
+                        &:after{
+                            background-color: ${({ theme }) => theme['secondary-color']};
                         }
                     }
                     &.success{
@@ -361,6 +450,13 @@ const CalendarWrapper = Styled.div`
                     }
                 }
             }
+            .emptyData{
+                min-height: 110px;
+                font-size: 18px;
+                align-items: center;
+                justify-content: center;
+                color: ${({ theme }) => theme['light-color']};
+            }
         }
     }
 
@@ -368,7 +464,10 @@ const CalendarWrapper = Styled.div`
         tr{
             th,
             td{
-                border-right: 1px solid ${({ theme }) => theme['border-color-light']};
+                &:not(:last-child){
+                    ${({ theme }) => (theme.rtl ? 'border-left' : 'border-right')}: 1px solid ${({ theme }) =>
+  theme['border-color-light']};
+                }
             }
         }
         thead{
@@ -413,7 +512,12 @@ const CalendarWrapper = Styled.div`
                 vertical-align: top;
                 font-size: 14px;
                 &:first-child{
-                    border-right: 0 none;
+                    ${({ theme }) => (theme.rtl ? 'border-left' : 'border-right')}: 0 none;
+                }
+                &.schedule-time{
+                    direction: ltr;
+                    min-width: 100px;
+                    width: 130px;
                 }
                 .ant-row{
                     &:not(:last-child){
@@ -424,9 +528,16 @@ const CalendarWrapper = Styled.div`
                     font-weight: 500;
                     color: ${({ theme }) => theme['dark-color']};
                 }
+                .schedule-date-name{
+                    margin-left: 10px;
+                }
                 .event-title{
                     font-weight: 500;
                     color: ${({ theme }) => theme['dark-color']};
+                    @media only screen and (max-width: 575px){
+                        display: inline-block;
+                        margin-top: 6px; 
+                    }
                 }
                 .schedule-time{
                     font-size: 13px;
@@ -444,6 +555,7 @@ const CalendarWrapper = Styled.div`
                 position: absolute;
                 top: 0;
                 left: 0;
+                ${({ theme }) => (theme.rtl ? 'right' : 'left')}: 0;
                 padding: 5px 12px;
                 z-index: 1;
                 border-radius: 4px;
@@ -469,12 +581,15 @@ const UpdatePopup = Styled.div`
             
             .headerUpdate{
                 border-radius: 8px 8px 0 0;
-                padding: 8px 10px;
+                padding: 13px 20px;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 h4{
+                    font-size: 16px;
+                    font-weight: 500;
                     color: #fff;
+                    margin-bottom: 0;
                 }
                 .action{
                     display: flex;
@@ -483,8 +598,19 @@ const UpdatePopup = Styled.div`
                     justify-content: flex-end;
                     color: #fff;
                     a{
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        min-width: 36px;
+                        height: 36px;
+                        border-radius: 50%;
+                        background-color: transparent;
                         padding: 0;
                         color: #fff;
+                        transition: .3s;
+                        &:hover{
+                            background-color: #F4F5F715;
+                        }
                         svg{
                             margin: 0;
                         }
@@ -492,13 +618,49 @@ const UpdatePopup = Styled.div`
                 }
             }
             .bodyUpdate{
-                padding: 8px;
+                padding: 20px;
+                .event-info{
+                    display: flex;
+                    align-items: flex-start;
+                    color: ${({ theme }) => theme['gray-color']};
+                    &:last-child{
+                        margin-bottom: 0;
+                    }
+                    strong{
+                        margin-left: 6px;
+                        ${({ theme }) => (theme.rtl ? 'margin-right' : 'margin-left')}: 6px;
+                        font-weight: 500;
+                        color: ${({ theme }) => theme['dark-color']};
+                    }
+                    svg,
+                    i{
+                        color: ${({ theme }) => theme['light-color']};
+                    }
+                    svg,
+                    i,
+                    img{
+                        margin: ${({ theme }) => (theme.rtl ? '4px 0 0 12px' : '4px 12px 0 0')};
+                    }
+                    label{
+                        font-size: 13px;
+                        color: ${({ theme }) => theme['light-color']};
+                    }
+                }
             }
         }
     }
 `;
 
 const BlockViewCalendarWrapper = Styled.div`
+    &.table-responsive{
+        table{
+            @media only screen and (max-width: 1599px){
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+            }
+        }
+    }
     .ant-picker-calendar{
         border: 1px solid ${({ theme }) => theme['border-color-light']};
         .ant-picker-body{
@@ -510,6 +672,12 @@ const BlockViewCalendarWrapper = Styled.div`
             border-top: 0 none !important;
         }
         .ant-picker-cell{
+            min-width: 155px;
+            ${({ theme }) => (theme.rtl ? 'border-left' : 'border-right')}: 1px solid ${({ theme }) =>
+  theme['border-color-light']};
+            .ant-picker-cell-inner{
+                min-width: 155px;
+            }
             &:hover{
                 .ant-picker-calendar-date{
                     background-color: transparent !important;
@@ -522,6 +690,7 @@ const BlockViewCalendarWrapper = Styled.div`
                     &:after{
                         position: absolute;
                         left: 0;
+                        ${({ theme }) => (theme.rtl ? 'right' : 'left')}: 0;
                         top: 0;
                         height: 2px;
                         width: 100%;
@@ -531,7 +700,7 @@ const BlockViewCalendarWrapper = Styled.div`
                 }
             }
             &.ant-picker-cell-selected{
-                .ant-picker-calendar-date-today{
+                .ant-picker-calendar-date{
                     background-color: transparent;
                 }
             }
@@ -544,7 +713,7 @@ const BlockViewCalendarWrapper = Styled.div`
                 color: ${({ theme }) => theme['extra-light-color']};
             }
             .ant-picker-calendar-date-value{
-                margin-bottom: 10px;
+                margin: 6px 4px 10px 0
             }
         }
         table{
@@ -565,12 +734,92 @@ const BlockViewCalendarWrapper = Styled.div`
                 }
                 th,
                 td{
-                    border-right: 1px solid ${({ theme }) => theme['border-color-light']};
+                    ${({ theme }) => (theme.rtl ? 'border-left' : 'border-right')}: 0;
                     border-bottom: 1px solid ${({ theme }) => theme['border-color-light']};
+                    &:last-child{
+                        border-right: 0 none;
+                        ${({ theme }) => (theme.rtl ? 'border-left' : 'border-right')}: 0 none;
+                    }
                 }
             }
         }
     }
 `;
 
-export { CalendarWrapper, Aside, UpdatePopup, BlockViewCalendarWrapper };
+const AddEventWrap = Styled.div`
+    label{
+        font-weight: 400 !important;
+        color: ${({ theme }) => theme['light-color']} !important;
+        margin-bottom: 0 !important;
+    }
+    .ant-form-item-control-input{
+        min-height: 46px;
+        textarea{
+            min-height: 104px;
+            resize: none;
+        }
+        .ant-input{
+            border: 1px solid ${({ theme }) => theme['border-color-light']};
+            &::placeholder{
+                color: ${({ theme }) => theme['gray-color']};
+            }
+        }
+    }
+    .ant-row{
+        flex-flow: row !important;
+        align-items: center;
+        @media only screen and (max-width: 575px){
+            flex-flow: column !important;
+            align-items: flex-start;
+        }
+        &.event-desc{
+            align-items: flex-start;
+        }
+        .ant-form-item-control{
+            @media only screen and (max-width: 575px){
+                width: 100%;
+            }
+        }
+    }
+    
+    .date-time-picker {
+        .ant-picker{
+            min-width: auto;
+            width: 100%;
+            padding: ${({ theme }) => (theme.rtl ? '0 0 0 12px' : '0 12px 0 0')};
+            &:not(:last-child){
+                ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 10px;
+            }
+        }
+        .ant-picker-input{
+            padding: 0 30px;
+            position: relative;
+            @media only screen and (max-width: 575px){
+                padding: 0 16px;
+            }
+            .ant-picker-suffix{
+                position: absolute;
+                ${({ theme }) => (theme.rtl ? 'right' : 'left')}: 14px;
+                top: 50%;
+                transform: translateY(-50%);
+                @media only screen and (max-width: 575px){
+                    ${({ theme }) => (theme.rtl ? 'right' : 'left')}: 6px;
+                }
+                svg{
+                    color: ${({ theme }) => theme['light-color']};
+                }
+            }
+        }
+    }
+    .add-event-footer{
+        .ant-btn-white{
+            color: ${({ theme }) => theme['light-color']} !important;
+        }
+        .btn-save{
+            height: 38px;
+            padding: 0 25px;
+        }
+    }
+`;
+
+export { CalendarWrapper, Aside, UpdatePopup, BlockViewCalendarWrapper, AddEventWrap };

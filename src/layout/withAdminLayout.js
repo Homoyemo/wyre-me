@@ -196,7 +196,7 @@ const ThemeLayout = WrappedComponent => {
               }}
             >
               <Row>
-                <Col lg={4} sm={6} xs={12} className="align-center-v navbar-brand">
+                <Col lg={!topMenu ? 4 : 3} sm={6} xs={12} className="align-center-v navbar-brand">
                   {!topMenu || window.innerWidth <= 991 ? (
                     <Button type="link" onClick={toggleCollapsed}>
                       <img src={require(`../static/img/icon/${collapsed ? 'right.svg' : 'left.svg'}`)} alt="menu" />
@@ -213,7 +213,7 @@ const ThemeLayout = WrappedComponent => {
                   </Link>
                 </Col>
 
-                <Col lg={14} md={8} sm={0} xs={0}>
+                <Col lg={!topMenu ? 14 : 15} md={8} sm={0} xs={0}>
                   {topMenu && window.innerWidth > 991 ? <TopMenu /> : <HeaderSearch rtl={rtl} darkMode={darkMode} />}
                 </Col>
 
@@ -411,13 +411,27 @@ const ThemeLayout = WrappedComponent => {
                   <h4>Navbar Type</h4>
                   <ul className="customizer-list d-flex">
                     <li className="customizer-list__item">
-                      <Link className={!topMenu ? 'active' : 'deactivate'} onClick={modeChangeSideNav} to="#">
+                      <Link
+                        className={!topMenu ? 'active' : 'deactivate'}
+                        onClick={() => {
+                          showCustomizer();
+                          modeChangeSideNav();
+                        }}
+                        to="#"
+                      >
                         <img src={require('../static/img/side.png')} alt="" />
                         <FontAwesome name="check-circle" />
                       </Link>
                     </li>
                     <li className="customizer-list__item top">
-                      <Link className={topMenu ? 'active' : 'deactivate'} onClick={modeChangeTopNav} to="#">
+                      <Link
+                        className={topMenu ? 'active' : 'deactivate'}
+                        onClick={() => {
+                          showCustomizer();
+                          modeChangeTopNav();
+                        }}
+                        to="#"
+                      >
                         <img src={require(`../static/img/top.png`)} alt="" />
                         <FontAwesome name="check-circle" />
                       </Link>
