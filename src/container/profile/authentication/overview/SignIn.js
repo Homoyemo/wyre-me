@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import { Form, Input, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,17 +19,22 @@ const SignIn = () => {
     checked: null,
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     dispatch(login());
     history.push('/admin');
-  };
+  }, [history, dispatch]);
 
   const onChange = checked => {
     setState({ ...state, checked });
   };
-  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+  const { loginWithPopup, isAuthenticated } = useAuth0();
 
-  console.log(isAuthenticated);
+  useEffect(() => {
+    if (isAuthenticated) {
+      handleSubmit();
+    }
+  }, [isAuthenticated, handleSubmit]);
+
   return (
     <AuthWrapper>
       <p className="auth-notice">
@@ -62,16 +67,10 @@ const SignIn = () => {
               {isLoading ? 'Loading...' : 'Sign In'}
             </Button>
           </Form.Item>
-          <button
-            type="button"
-            onClick={e => {
-              e.preventDefault();
-              loginWithRedirect();
-            }}
-          >
+          <button type="button" onClick={() => loginWithPopup()}>
             Auth0 Login
           </button>
-          <button
+          {/* <button
             type="button"
             onClick={e => {
               e.preventDefault();
@@ -79,7 +78,7 @@ const SignIn = () => {
             }}
           >
             Auth0 logout
-          </button>
+          </button> */}
           <p className="form-divider">
             <span>Or</span>
           </p>
