@@ -1,14 +1,10 @@
-export const theme = {
-  authButtons: {
-    testConnection: {
-      displayName: 'Test Conn',
-      primaryColor: '#b7b7b7',
-      foregroundColor: '#000000',
-      icon: 'http://example.com/icon.png',
-    },
-    testConnection2: {
-      primaryColor: '#000000',
-      foregroundColor: '#ffffff',
-    },
+export const auth0options = {
+  theme: {
+    logo: 'https://demo.aazztech.com/strikingdash/static/media/Logo_Dark.9ef25a33.svg',
+    primaryColor: '#5F63F2',
+    labeledSubmitButton: false,
+  },
+  languageDictionary: {
+    title: 'StrikingDash',
   },
 };

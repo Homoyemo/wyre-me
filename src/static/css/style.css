@@ -2208,3 +2208,9 @@ html[dir='rtl'] .ant-menu.ant-menu-vertical .ant-menu-submenu-arrow {
 html[dir='rtl'] .ant-menu-vertical .ant-menu-submenu-title {
   padding-right: 15px !important;
 }
+
+/* Auth0 style */
+.auth0-lock.auth0-lock .auth0-lock-header-logo {  
+  width: 180px !important;
+  margin: 0 !important;
+}

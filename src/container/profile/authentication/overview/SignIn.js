@@ -10,6 +10,7 @@ import { AuthWrapper } from './style';
 import { login } from '../../../../redux/authentication/actionCreator';
 import { Checkbox } from '../../../../components/checkbox/checkbox';
 import Heading from '../../../../components/heading/heading';
+import { auth0options } from '../../../../config/auth0';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
@@ -23,7 +24,7 @@ const SignIn = () => {
     checked: null,
   });
 
-  const lock = new Auth0Lock(clientId, domain);
+  const lock = new Auth0Lock(clientId, domain, auth0options);
 
   const handleSubmit = useCallback(() => {
     dispatch(login());
@@ -45,6 +46,7 @@ const SignIn = () => {
   let profile = null;
 
   lock.on('authenticated', function(authResult) {
+    console.log(profile, accessToken);
     lock.getUserInfo(authResult.accessToken, function(error, profileResult) {
       if (error) {
         // Handle error
@@ -57,7 +59,7 @@ const SignIn = () => {
       // Update DOM
     });
   });
-  console.log(profile);
+
   return (
     <AuthWrapper>
       <p className="auth-notice">
