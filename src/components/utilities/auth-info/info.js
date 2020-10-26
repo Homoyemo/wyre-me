@@ -3,7 +3,6 @@ import { Avatar } from 'antd';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import FeatherIcon from 'feather-icons-react';
-import { useAuth0 } from '@auth0/auth0-react';
 import { InfoWraper, NavAuth, UserDropDwon } from './auth-info-style';
 import Message from './message';
 import Notification from './notification';
@@ -21,16 +20,10 @@ const AuthInfo = () => {
     flag: 'english',
   });
   const { flag } = state;
-  const { logout, isAuthenticated } = useAuth0();
 
   const SignOut = e => {
     e.preventDefault();
-    if (!isAuthenticated) {
-      dispatch(logOut());
-    } else {
-      logout();
-      dispatch(logOut());
-    }
+    dispatch(logOut());
   };
 
   const userContent = (

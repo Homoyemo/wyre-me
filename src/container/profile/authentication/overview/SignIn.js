@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import { Form, Input, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { FacebookOutlined, TwitterOutlined } from '@ant-design/icons';
-import { useAuth0 } from '@auth0/auth0-react';
 import { Auth0Lock } from 'auth0-lock';
 import { AuthWrapper } from './style';
 import { login } from '../../../../redux/authentication/actionCreator';
@@ -34,29 +33,15 @@ const SignIn = () => {
   const onChange = checked => {
     setState({ ...state, checked });
   };
-  const { isAuthenticated } = useAuth0();
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      handleSubmit();
-    }
-  }, [isAuthenticated, handleSubmit]);
-
-  let accessToken = null;
-  let profile = null;
 
   lock.on('authenticated', function(authResult) {
-    console.log(profile, accessToken);
     lock.getUserInfo(authResult.accessToken, function(error, profileResult) {
       if (error) {
-        // Handle error
         return;
       }
 
-      accessToken = authResult.accessToken;
-      profile = profileResult;
-
-      // Update DOM
+      handleSubmit();
+      lock.hide();
     });
   });
 
@@ -92,18 +77,9 @@ const SignIn = () => {
               {isLoading ? 'Loading...' : 'Sign In'}
             </Button>
           </Form.Item>
-          <button type="button" onClick={() => lock.show()}>
-            Auth0 Login
-          </button>
-          {/* <button
-            type="button"
-            onClick={e => {
-              e.preventDefault();
-              logout();
-            }}
-          >
-            Auth0 logout
-          </button> */}
+          <Button className="btn-signin" type="primary" size="large" htmlType="button" onClick={() => lock.show()}>
+            Sign in with Auth0
+          </Button>
           <p className="form-divider">
             <span>Or</span>
           </p>

@@ -4,6 +4,11 @@ export const auth0options = {
     primaryColor: '#5F63F2',
     labeledSubmitButton: false,
   },
+  avatar: null,
+  rememberLastLogin: false,
+  auth: {
+    redirect: false,
+  },
   languageDictionary: {
     title: 'StrikingDash',
   },

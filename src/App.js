@@ -3,9 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { hot } from 'react-hot-loader/root';
 import { Provider, useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
-import { BrowserRouter as Router, Redirect, Route, useHistory } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
-import { Auth0Provider } from '@auth0/auth0-react';
 import store from './redux/store';
 import Admin from './routes/admin';
 import Auth from './routes/auth';
@@ -14,8 +13,6 @@ import config from './config/config';
 import ProtectedRoute from './components/utilities/protectedRoute';
 
 const { theme } = config;
-const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
 const ProviderConfig = () => {
   const { rtl, isLoggedIn, topMenu, darkMode } = useSelector(state => {
@@ -53,20 +50,9 @@ const ProviderConfig = () => {
 };
 
 function App() {
-  const history = useHistory();
-  const onRedirectCallback = appState => {
-    history.push(appState?.returnTo || window.location.pathname);
-  };
   return (
     <Provider store={store}>
-      <Auth0Provider
-        onRedirectCallback={onRedirectCallback}
-        domain={domain}
-        clientId={clientId}
-        redirectUri={window.location.origin + process.env.PUBLIC_URL}
-      >
-        <ProviderConfig />
-      </Auth0Provider>
+      <ProviderConfig />
     </Provider>
   );
 }
