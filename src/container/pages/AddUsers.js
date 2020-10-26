@@ -69,7 +69,7 @@ const AddNew = ({ match }) => {
 };
 
 AddNew.propTypes = {
-  match: propTypes.shape(propTypes.object).isRequired,
+  match: propTypes.object,
 };
 
 export default AddNew;

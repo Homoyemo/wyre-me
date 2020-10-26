@@ -24,7 +24,7 @@ const ActivityContent = () => {
               </div>
               <Link className="activity-more" to="#">
                 <Dropdown
-                  action="click"
+                  action={['click']}
                   content={
                     <>
                       <Link to="#">
@@ -55,7 +55,7 @@ const ActivityContent = () => {
               </div>
               <Link className="activity-more" to="#">
                 <Dropdown
-                  action="click"
+                  action={['click']}
                   content={
                     <>
                       <Link to="#">
@@ -86,7 +86,7 @@ const ActivityContent = () => {
               </div>
               <Link className="activity-more" to="#">
                 <Dropdown
-                  action="click"
+                  action={['click']}
                   content={
                     <>
                       <Link to="#">
@@ -117,7 +117,7 @@ const ActivityContent = () => {
               </div>
               <Link className="activity-more" to="#">
                 <Dropdown
-                  action="click"
+                  action={['click']}
                   content={
                     <>
                       <Link to="#">
@@ -148,7 +148,7 @@ const ActivityContent = () => {
               </div>
               <Link className="activity-more" to="#">
                 <Dropdown
-                  action="click"
+                  action={['click']}
                   content={
                     <>
                       <Link to="#">
@@ -179,7 +179,7 @@ const ActivityContent = () => {
               </div>
               <Link className="activity-more" to="#">
                 <Dropdown
-                  action="click"
+                  action={['click']}
                   content={
                     <>
                       <Link to="#">
@@ -210,7 +210,7 @@ const ActivityContent = () => {
               </div>
               <Link className="activity-more" to="#">
                 <Dropdown
-                  action="click"
+                  action={['click']}
                   content={
                     <>
                       <Link to="#">
@@ -241,7 +241,7 @@ const ActivityContent = () => {
               </div>
               <Link className="activity-more" to="#">
                 <Dropdown
-                  action="click"
+                  action={['click']}
                   content={
                     <>
                       <Link to="#">
@@ -272,7 +272,7 @@ const ActivityContent = () => {
               </div>
               <Link className="activity-more" to="#">
                 <Dropdown
-                  action="click"
+                  action={['click']}
                   content={
                     <>
                       <Link to="#">
@@ -303,7 +303,7 @@ const ActivityContent = () => {
               </div>
               <Link className="activity-more" to="#">
                 <Dropdown
-                  action="click"
+                  action={['click']}
                   content={
                     <>
                       <Link to="#">

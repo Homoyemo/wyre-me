@@ -74,8 +74,8 @@ const GoogleMaps = GoogleApiWrapper({
 });
 
 GoogleMaps.defaultProps = {
-  latitude: 50.797897,
-  longitude: -1.077641,
+  latitude: '50.797897',
+  longitude: '-1.077641',
   width: '100%',
   height: '600px',
   zoom: 13,
@@ -94,8 +94,8 @@ GoogleMaps.defaultProps = {
 };
 
 GoogleMaps.propTypes = {
-  latitude: PropTypes.number,
-  longitude: PropTypes.number,
+  latitude: PropTypes.string,
+  longitude: PropTypes.string,
   google: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,

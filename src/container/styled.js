@@ -382,16 +382,66 @@ const Main = Styled.div`
     }
 
     /* // Vector Map */
-    .vertor-map{
+    .rsm_map{
         min-height: 505px;
         .world-map{
             width: 100%;
-            height: 600px;
+            height: auto;
+            @media only screen and (max-width: 1599px){
+                height: 480px;
+            }
+            @media only screen and (max-width: 1399px){
+                height: 400px;
+            }
             @media only screen and (max-width: 575px){
                 height: 400px;
             }
-            @media only screen and (max-width: 375px){
+            @media only screen and (max-width: 767px){
+                height: 300px;
+            }
+            @media only screen and (max-width: 575px){
+                height: 250px;
+            }
+            @media only screen and (max-width: 479px){
                 height: 350px;
+            }
+            @media only screen and (max-width: 375px){
+                height: 240px;
+            }
+        }
+        .controls{
+            position: absolute;
+            right: 30px;
+            bottom: 30px;
+            button{
+                display: block;
+                width: 27px;
+                height: 27px;
+                background: none;
+                color: #5a5f7d;
+                border: 1px solid #f1f2f6;
+                padding: 0;
+                font-size: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #fff;
+                cursor: pointer;
+                &:first-child{
+                    border-radius: 6px 6px 0 0;
+                }
+                &:last-child{
+                    border-radius: 0 0 6px 6px;
+                }
+                &:focus{
+                    outline: none;
+                }
+                svg{
+                    width: 10px;
+                }
+            }
+            button + button{
+                border-top: 0 none;
             }
         }
     }
@@ -764,6 +814,23 @@ const MessageStyleWrapper = Styled.div`
 `;
 
 const BasicFormWrapper = Styled.div`
+    .ant-form {
+        .form-item{
+            margin-bottom: 30px;
+            label{
+                font-weight: 500;
+                display: block;
+                margin-bottom: 15px;
+            }
+            .ant-cascader-picker{
+                width: 100%;
+                min-height: 48px;
+                .ant-cascader-input{
+                    min-height: 48px;
+                }
+            }
+        }
+    }
     .ant-form-item{
         flex-flow: column;
         &:not(:last-child){

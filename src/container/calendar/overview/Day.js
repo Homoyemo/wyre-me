@@ -176,9 +176,9 @@ const DayCalendar = () => {
           </tr>
         </thead>
         <tbody>
-          {eventTimes.map(time => {
+          {eventTimes.map((time, key) => {
             return (
-              <tr>
+              <tr key={key + 1}>
                 <td style={{ width: '60px' }}>{time}</td>
                 <td
                   className={`ant-picker-calendar-date-content ${

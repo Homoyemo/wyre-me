@@ -1132,11 +1132,18 @@ const OrderSummary = Styled.div`
         }
     }
     .promo-apply-form{
+        display: flex;
+        align-items: flex-end;
         margin: 5px 0 18px;
+        @media only screen and (max-width: 479px){
+            flex-flow: column;
+            align-items: flex-start;
+        }
         .ant-form-item{
             margin-bottom: 0;
         }
         .ant-row{
+            flex: auto;
             flex-flow: column;
         }
         .ant-form-item-label{
@@ -1154,9 +1161,10 @@ const OrderSummary = Styled.div`
                 flex-flow: column;
             }
             input{
-                margin: ${({ theme }) => (theme.rtl ? '0 0 20px 6px' : '0 6px 20px 0')};
+                margin: ${({ theme }) => (theme.rtl ? '0 0 0px 6px' : '0 6px 0px 0')};
                 height: 40px;
                 @media only screen and (max-width: 479px){
+                    margin: ${({ theme }) => (theme.rtl ? '0 0 10px 6px' : '0 6px 10px 0')};
                     width: 100% !important;
                 }
             }

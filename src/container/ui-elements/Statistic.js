@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Statistic, Button } from 'antd';
+import { Row, Col, Statistic } from 'antd';
 import FeatherIcon from 'feather-icons-react';
 import { LikeOutlined, ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import { PageHeader } from '../../components/page-headers/page-headers';
@@ -8,6 +8,7 @@ import { Cards } from '../../components/cards/frame/cards-frame';
 import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
 import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
 import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
+import { Button } from '../../components/buttons/buttons';
 
 const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30;
 const { Countdown } = Statistic;

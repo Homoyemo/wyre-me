@@ -59,7 +59,7 @@ const CreateProject = ({ visible, onCancel }) => {
       title="Create Project"
       visible={state.visible}
       footer={[
-        <div className="project-modal-footer">
+        <div key="1" className="project-modal-footer">
           <Button size="default" type="primary" key="submit" onClick={handleOk}>
             Add New Project
           </Button>

@@ -99,18 +99,18 @@ const ProgressBar = () => {
             </Cards>
             <Cards title="Progress bar with success segment" caption="The simplest use of Progress bar">
               <Tooltip title="3 done / 3 in progress / 4 to do">
-                <Progress percent={60} successPercent={30} style={{ marginBottom: '15px' }} />
+                <Progress percent={60} success={{ percent: 30 }} style={{ marginBottom: '15px' }} />
               </Tooltip>
               <Tooltip title="3 done / 3 in progress / 4 to do">
                 <Progress
                   percent={60}
-                  successPercent={30}
+                  success={{ percent: 30 }}
                   type="circle"
                   style={{ [!rtl ? 'marginRight' : 'marginLeft']: '15px' }}
                 />
               </Tooltip>
               <Tooltip title="3 done / 3 in progress / 4 to do">
-                <Progress percent={60} successPercent={30} type="dashboard" />
+                <Progress percent={60} success={{ percent: 30 }} type="dashboard" />
               </Tooltip>
             </Cards>
           </Col>

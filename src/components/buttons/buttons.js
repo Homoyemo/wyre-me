@@ -32,10 +32,10 @@ const Button = props => {
   return (
     <ButtonStyled
       squared={squared}
-      outlined={outlined}
+      outlined={outlined ? 1 : 0}
       ghost={ghost}
-      transparented={transparented}
-      raised={raised}
+      transparent={transparented ? 1 : 0}
+      raised={raised ? 1 : 0}
       data={type}
       size={size}
       shape={shape}
@@ -68,6 +68,8 @@ Button.propTypes = {
     'dark',
     'light',
     'white',
+    'dashed',
+    'error',
     'default',
   ]),
   shape: PropTypes.string,

@@ -83,7 +83,7 @@ const customTooltips = function(tooltip) {
   const toolTip = document.querySelector('.chartjs-tooltip');
   const toolTipHeight = toolTip.clientHeight;
 
-  // Display, position, and set styles for font
+  // Display, position, and set styles for font 
 
   tooltipEl.style.opacity = 1;
   tooltipEl.style.left = `${positionX + tooltip.caretX}px`;

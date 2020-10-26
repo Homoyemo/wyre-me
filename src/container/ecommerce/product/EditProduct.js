@@ -106,19 +106,6 @@ const EditProduct = () => {
                                   </Form.Item>
 
                                   <Form.Item name="price" initialValue="120" label="Price">
-                                    <InputNumber
-                                      style={{ width: '100%' }}
-                                      prefix={<FeatherIcon icon="dollar-sign" size={14} />}
-                                    />
-                                  </Form.Item>
-
-                                  <Form.Item name="discount" initialValue="20%" label="Discount">
-                                    <InputNumber
-                                      style={{ width: '100%' }}
-                                      prefix={<FeatherIcon icon="percent" size={14} />}
-                                    />
-                                  </Form.Item>
-                                  <Form.Item name="price" initialValue="120" label="Price">
                                     <div className="input-prepend-wrap">
                                       <span className="input-prepend">
                                         <FeatherIcon icon="dollar-sign" size={14} />

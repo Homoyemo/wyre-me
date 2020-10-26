@@ -270,10 +270,10 @@ const Single = props => {
                     >
                       <FontAwesome name="star-o" />
                     </Link>
-                    <Link>
+                    <Link to="#">
                       <FeatherIcon icon="more-vertical" />
                     </Link>
-                    <Link>
+                    <Link to="#">
                       <FeatherIcon icon="corner-up-left" />
                     </Link>
                   </span>
@@ -331,8 +331,8 @@ const Single = props => {
 };
 
 Single.propTypes = {
-  match: propTypes.shape(propTypes.object).isRequired,
-  history: propTypes.shape(propTypes.object).isRequired,
+  match: propTypes.object,
+  history: propTypes.object,
 };
 
 export default Single;

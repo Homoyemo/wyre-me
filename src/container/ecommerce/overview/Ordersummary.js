@@ -94,7 +94,9 @@ const Ordersummary = ({ subtotal, isExact, path }) => {
               </Form.Item>
               <div className="promo-apply-form">
                 <Form.Item name="promoCode" label="Promo Code">
-                  <Input style={{ width: '72%' }} placeholder="Promo Code" />
+                  <Input placeholder="Promo Code" />
+                </Form.Item>
+                <Form.Item>
                   <Button htmlType="submit" size="default" type="success" outlined>
                     Apply
                   </Button>

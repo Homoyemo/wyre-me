@@ -405,7 +405,7 @@ const MenuItems = ({ darkMode, toggleCollapsed, topMenu }) => {
         </Menu.Item>
         <Menu.Item key="skeleton">
           <NavLink onClick={toggleCollapsed} to={`${path}/components/skeleton`}>
-            Skeleton{' '}
+            Skeleton
           </NavLink>
         </Menu.Item>
         <Menu.Item key="slider">
@@ -421,6 +421,11 @@ const MenuItems = ({ darkMode, toggleCollapsed, topMenu }) => {
         <Menu.Item key="statistic">
           <NavLink onClick={toggleCollapsed} to={`${path}/components/statistic`}>
             Statistic
+          </NavLink>
+        </Menu.Item>
+        <Menu.Item key="starter">
+          <NavLink onClick={toggleCollapsed} to={`${path}/components/starter`}>
+            Starter
           </NavLink>
         </Menu.Item>
         <Menu.Item key="steps">
@@ -564,7 +569,7 @@ const MenuItems = ({ darkMode, toggleCollapsed, topMenu }) => {
         </Menu.Item>
         <Menu.Item key="Vector">
           <NavLink onClick={toggleCollapsed} to={`${path}/maps/Vector`}>
-            Vector Maps
+            Simple Map
           </NavLink>
         </Menu.Item>
       </SubMenu>

@@ -794,20 +794,65 @@ const RegionList = Styled.div`
 const RegionMap = Styled.div`
     text-align: center;
     height: 100%;
-    margin-top: 25px;
     ${({ theme }) => (theme.rtl ? 'padding-right' : 'padding-left')}: 20px;
+    .__react_component_tooltip {
+        background: ${({ theme }) => theme['dark-color']};
+        border-radius: 3px;
+        box-shadow: 0 10px 15px ${({ theme }) => theme['light-color']}15;
+    }
     >div{
         width: 100%;
         height: 250px;
+        overflow: hidden;
         @media only screen and (max-width: 479px){
             height: 200px;
         }
     }
     svg{
-        height: 230px;
-        margin: 0 auto;
+        width: 450px;
         @media only screen and (max-width: 479px){
             height: 180px;
+        }
+        @media only screen and (max-width: 440px){
+            width: 310px;
+        }
+        @media only screen and (max-width: 320px){
+            width: 280px;
+        }
+    }
+    .controls{
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        button{
+            display: block;
+            width: 27px;
+            height: 27px;
+            background: none;
+            color: #5a5f7d;
+            border: 1px solid #f1f2f6;
+            padding: 0;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            cursor: pointer;
+            &:first-child{
+                border-radius: 6px 6px 0 0;
+            }
+            &:last-child{
+                border-radius: 0 0 6px 6px;
+            }
+            &:focus{
+                outline: none;
+            }
+            svg{
+                width: 10px;
+            }
+        }
+        button + button{
+            border-top: 0 none;
         }
     }
 `;
@@ -1071,20 +1116,40 @@ const IncomeExpenseWrapper = Styled.div`
 
 const LocationMapWrapper = Styled.div`
     .location-map{
-        padding: 20px 0;
+        padding: 10px 0 30px;
+        position: relative;
         >div{
             width: 100%;
             height: 160px;
         }
-        svg{
-            @media only screen and (max-width: 991px){
-               height: 100%;
-               width: auto;
+        .controls{
+            position: absolute;
+            right: 25px;
+            bottom: 20px;
+            button{
+                display: block;
+                width: 27px;
+                height: 27px;
+                background: none;
+                color: #5a5f7d;
+                border: 1px solid #f1f2f6;
+                padding: 0;
+                font-size: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #fff;
+                cursor: pointer;
+                &:focus{
+                    outline: none;
+                }
+                svg{
+                    width: 10px;
+                }
             }
-        }
-        .jvectormap-zoomin,
-        .jvectormap-zoomout{
-            ${({ theme }) => (theme.rtl ? 'left' : 'right')}: 25px;
+            button + button{
+                border-top: 0 none;
+            }
         }
     }
     .location-table{
@@ -1092,6 +1157,9 @@ const LocationMapWrapper = Styled.div`
         padding-top: 12px;
         min-height: 180px;
         border-top: 1px solid ${({ theme }) => theme['border-color-light']} !important;
+        background: #ffffff;
+        z-index: 999;
+        position: relative;
         table{
             thead{
                 th{
@@ -1365,7 +1433,7 @@ const ChartContainer = Styled.div`
         transform: translate(-50%, 5%);
         z-index: 222;
         top: 0;
-        left: 0
+        left: 0;
         @media only screen and (max-width: 1199px){
             padding: 6px 8px !important;
         }

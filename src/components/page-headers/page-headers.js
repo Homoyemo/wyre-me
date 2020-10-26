@@ -31,7 +31,7 @@ PageHeader.propTypes = {
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   subTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   bgColor: PropTypes.string,
-  routes: PropTypes.arrayOf(PropTypes.string),
+  routes: PropTypes.arrayOf(PropTypes.object),
   // eslint-disable-next-line react/forbid-prop-types
   buttons: PropTypes.array,
   ghost: PropTypes.bool,

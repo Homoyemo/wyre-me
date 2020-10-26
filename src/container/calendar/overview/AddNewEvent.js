@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { DatePicker, Form, Input, Radio, Select } from 'antd';
+import { Col, Row, DatePicker, Form, Input, Radio, Select } from 'antd';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { AddEventWrap } from '../Style';
@@ -13,6 +13,8 @@ const AddNewEvent = ({ defaultValue, onHandleAddEvent }) => {
   const [state, setState] = useState({
     startDate: defaultValue,
     endDate: defaultValue,
+    startTime: '',
+    endTime: '',
   });
 
   const formItemLayout = {
@@ -35,7 +37,7 @@ const AddNewEvent = ({ defaultValue, onHandleAddEvent }) => {
       title: values.title,
       description: values.description,
       date: [moment(state.startDate).format('MM/DD/YYYY'), moment(state.endDate).format('MM/DD/YYYY')],
-      time: [values.startTime.format('HH:mm a'), values.endTime.format('HH:mm a')],
+      time: [state.startTime.format('HH:mm a'), state.endTime.format('HH:mm a')],
       type: values.type,
       label: values.label,
     });
@@ -47,6 +49,14 @@ const AddNewEvent = ({ defaultValue, onHandleAddEvent }) => {
   const onChangeEnd = (date, dateString) => {
     setState({ ...state, endDate: dateString });
   };
+
+  const onChangeStartTime = time => {
+    setState({ ...state, startTime: time });
+  };
+  const onChangeEndTime = time => {
+    setState({ ...state, endTime: time });
+  };
+
   return (
     <BasicFormWrapper>
       <AddEventWrap>
@@ -62,28 +72,40 @@ const AddNewEvent = ({ defaultValue, onHandleAddEvent }) => {
               <Radio value="task">Task</Radio>
             </Radio.Group>
           </Form.Item>
-          <Form.Item {...formItemLayout} initialValue="event" name="type" label="Start">
-            <div className="date-time-picker d-flex">
-              <DatePicker
-                onChange={onChangeStart}
-                value={moment(state.startDate, dateFormat)}
-                defaultValue={moment(state.startDate, dateFormat)}
-              />
-
-              <DatePicker picker="time" />
-            </div>
-          </Form.Item>
-          <Form.Item {...formItemLayout} initialValue="event" name="type" label="End">
-            <div className="date-time-picker d-flex">
-              <DatePicker
-                onChange={onChangeEnd}
-                value={moment(state.endDate, dateFormat)}
-                defaultValue={moment(state.endDate, dateFormat)}
-              />
-
-              <DatePicker picker="time" />
-            </div>
-          </Form.Item>
+          <div className="ant-form-item">
+            <Row>
+              <Col sm={4} xs={24}>
+                <span className="label">Start:</span>
+              </Col>
+              <Col sm={20} xs={24}>
+                <div className="date-time-picker d-flex">
+                  <DatePicker
+                    onChange={onChangeStart}
+                    value={moment(state.startDate, dateFormat)}
+                    defaultValue={moment(state.startDate, dateFormat)}
+                  />
+                  <DatePicker onChange={onChangeStartTime} picker="time" />
+                </div>
+              </Col>
+            </Row>
+          </div>
+          <div className="ant-form-item">
+            <Row>
+              <Col sm={4} xs={24}>
+                <span className="label">End:</span>
+              </Col>
+              <Col sm={20} xs={24}>
+                <div className="date-time-picker d-flex">
+                  <DatePicker
+                    onChange={onChangeEnd}
+                    value={moment(state.endDate, dateFormat)}
+                    defaultValue={moment(state.endDate, dateFormat)}
+                  />
+                  <DatePicker onChange={onChangeEndTime} picker="time" />
+                </div>
+              </Col>
+            </Row>
+          </div>
 
           <Form.Item {...formItemLayout} className="event-desc" name="description" label="Description">
             <Input.TextArea placeholder="Write Your Description" />

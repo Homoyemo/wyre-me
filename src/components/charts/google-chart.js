@@ -32,7 +32,7 @@ const GoogleBasicBarChart = props => {
 GoogleBasicBarChart.propTypes = {
   width: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.array,
   title: PropTypes.string.isRequired,
   chartArea: PropTypes.string.isRequired,
 };

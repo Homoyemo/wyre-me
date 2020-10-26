@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DatePicker, Form, Input, Radio, Select } from 'antd';
+import { Col, DatePicker, Form, Input, Radio, Row, Select } from 'antd';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
@@ -23,6 +23,8 @@ const UpdateEvent = ({ data, onCancel }) => {
   const [state, setState] = useState({
     startDate: moment(date[0]).format('YYYY-MM-DD'),
     endDate: moment(date[1]).format('YYYY-MM-DD'),
+    startTime: moment(time[0], 'HH:mm a'),
+    endTime: moment(time[1], 'HH:mm a'),
   });
 
   const formItemLayout = {
@@ -39,7 +41,7 @@ const UpdateEvent = ({ data, onCancel }) => {
           id,
           description: values.description,
           date: [moment(state.startDate).format('MM/DD/YYYY'), moment(state.endDate).format('MM/DD/YYYY')],
-          time: [values.startTime.format('HH:mm a'), values.endTime.format('HH:mm a')],
+          time: [state.startTime.format('hh:mm a'), state.endTime.format('hh:mm a')],
           type: values.type,
           label: values.label,
         },
@@ -53,6 +55,13 @@ const UpdateEvent = ({ data, onCancel }) => {
   };
   const onChangeEnd = (date, dateString) => {
     setState({ ...state, endDate: dateString });
+  };
+
+  const onChangeStartTime = times => {
+    setState({ ...state, startTime: times });
+  };
+  const onChangeEndTime = times => {
+    setState({ ...state, endTime: times });
   };
 
   return (
@@ -70,32 +79,41 @@ const UpdateEvent = ({ data, onCancel }) => {
               <Radio value="task">Task</Radio>
             </Radio.Group>
           </Form.Item>
-          <Form.Item {...formItemLayout} initialValue="event" name="type" label="Start">
-            <div className="date-time-picker d-flex">
-              <DatePicker
-                onChange={onChangeStart}
-                value={moment(state.startDate, dateFormat)}
-                defaultValue={moment(state.startDate, dateFormat)}
-              />
 
-              <Form.Item initialValue={moment(time[0], 'HH:mm:ss')} name="startTime" label="">
-                <DatePicker picker="time" />
-              </Form.Item>
-            </div>
-          </Form.Item>
-          <Form.Item {...formItemLayout} initialValue="event" name="type" label="End">
-            <div className="date-time-picker d-flex">
-              <DatePicker
-                onChange={onChangeEnd}
-                value={moment(state.endDate, dateFormat)}
-                defaultValue={moment(state.endDate, dateFormat)}
-              />
-
-              <Form.Item initialValue={moment(time[1], 'HH:mm:ss')} name="endTime" label="">
-                <DatePicker picker="time" />
-              </Form.Item>
-            </div>
-          </Form.Item>
+          <div className="ant-form-item">
+            <Row>
+              <Col sm={4} xs={24}>
+                <span className="label">Start:</span>
+              </Col>
+              <Col sm={20} xs={24}>
+                <div className="date-time-picker d-flex">
+                  <DatePicker
+                    onChange={onChangeStart}
+                    value={moment(state.startDate, dateFormat)}
+                    defaultValue={moment(state.startDate, dateFormat)}
+                  />
+                  <DatePicker onChange={onChangeStartTime} defaultValue={moment(time[0], 'HH:mm:ss')} picker="time" />
+                </div>
+              </Col>
+            </Row>
+          </div>
+          <div className="ant-form-item">
+            <Row>
+              <Col sm={4} xs={24}>
+                <span className="label">End:</span>
+              </Col>
+              <Col sm={20} xs={24}>
+                <div className="date-time-picker d-flex">
+                  <DatePicker
+                    onChange={onChangeEnd}
+                    value={moment(state.endDate, dateFormat)}
+                    defaultValue={moment(state.endDate, dateFormat)}
+                  />
+                  <DatePicker onChange={onChangeEndTime} defaultValue={moment(time[1], 'HH:mm:ss')} picker="time" />
+                </div>
+              </Col>
+            </Row>
+          </div>
 
           <Form.Item {...formItemLayout} initialValue={description} name="description" label="Description">
             <Input.TextArea placeholder="Write Your Description" />

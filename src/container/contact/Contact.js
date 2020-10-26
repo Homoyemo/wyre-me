@@ -168,7 +168,7 @@ const UserListDataTable = () => {
                   </Link>
                 </>
               }
-              action="click"
+              action={['click']}
             >
               <Button className="btn-icon" type="info" to="#" shape="circle">
                 <FeatherIcon icon="more-vertical" size={16} />

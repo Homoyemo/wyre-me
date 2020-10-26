@@ -226,6 +226,7 @@ const ThemeLayout = WrappedComponent => {
                           onClick={() => {
                             toggleSearch();
                           }}
+                          to="#"
                         >
                           <FeatherIcon icon="search" />
                           <FeatherIcon icon="x" />

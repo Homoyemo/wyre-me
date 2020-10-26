@@ -219,10 +219,10 @@ const SingleGroupChat = ({ match }) => {
               <Link to="#">
                 <img src={require('../../../static/img/avatar/chat-auth.png')} alt="" />
               </Link>
-              <Link className="show-more">
+              <Link to="#" className="show-more">
                 <span>20+</span>
               </Link>
-              <Link className="add-more">
+              <Link to="#" className="add-more">
                 <span className="add-icon">
                   <FeatherIcon icon="plus" size={14} />
                 </span>
@@ -479,7 +479,7 @@ const SingleGroupChat = ({ match }) => {
 };
 
 SingleGroupChat.propTypes = {
-  match: PropTypes.shape(PropTypes.object),
+  match: PropTypes.object,
 };
 
 export default SingleGroupChat;

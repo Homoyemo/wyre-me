@@ -93,9 +93,10 @@ const MailComposer = ({ onChange, onSend, defaultTag, replay }) => {
   );
 };
 MailComposer.propTypes = {
-  onChange: propTypes.func.isRequired,
+  onChange: propTypes.func,
   onSend: propTypes.func.isRequired,
   defaultTag: propTypes.string,
+  replay: propTypes.bool,
 };
 
 export default MailComposer;

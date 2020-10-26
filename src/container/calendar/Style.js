@@ -450,14 +450,16 @@ const CalendarWrapper = Styled.div`
                     }
                 }
             }
-            .emptyData{
-                min-height: 110px;
-                font-size: 18px;
-                align-items: center;
-                justify-content: center;
-                color: ${({ theme }) => theme['light-color']};
-            }
+            
         }
+    }
+
+    .emptyData{
+        min-height: 110px;
+        font-size: 18px;
+        align-items: center;
+        justify-content: center;
+        color: ${({ theme }) => theme['light-color']};
     }
 
     .event-week{
@@ -752,6 +754,14 @@ const AddEventWrap = Styled.div`
         color: ${({ theme }) => theme['light-color']} !important;
         margin-bottom: 0 !important;
     }
+    .ant-form-item{
+        span.label{
+            @media only screen and (max-width: 575px){
+                display: inline-block;
+                margin-bottom: 10px;
+            }
+        }
+    }
     .ant-form-item-control-input{
         min-height: 46px;
         textarea{
@@ -786,7 +796,6 @@ const AddEventWrap = Styled.div`
         .ant-picker{
             min-width: auto;
             width: 100%;
-            padding: ${({ theme }) => (theme.rtl ? '0 0 0 12px' : '0 12px 0 0')};
             &:not(:last-child){
                 ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 10px;
             }
@@ -795,15 +804,15 @@ const AddEventWrap = Styled.div`
             padding: 0 30px;
             position: relative;
             @media only screen and (max-width: 575px){
-                padding: 0 16px;
+                padding: 0 20px 0 25px;
             }
             .ant-picker-suffix{
                 position: absolute;
-                ${({ theme }) => (theme.rtl ? 'right' : 'left')}: 14px;
+                ${({ theme }) => (theme.rtl ? 'right' : 'left')}: 0;
                 top: 50%;
                 transform: translateY(-50%);
                 @media only screen and (max-width: 575px){
-                    ${({ theme }) => (theme.rtl ? 'right' : 'left')}: 6px;
+                    ${({ theme }) => (theme.rtl ? 'right' : 'left')}: 0;
                 }
                 svg{
                     color: ${({ theme }) => theme['light-color']};

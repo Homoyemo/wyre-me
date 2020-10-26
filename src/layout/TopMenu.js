@@ -41,7 +41,9 @@ const TopMenu = () => {
       <div className="strikingDash-top-menu">
         <ul>
           <li className="has-subMenu">
-            <Link className="parent">Dashboard</Link>
+            <Link to="#" className="parent">
+              Dashboard
+            </Link>
             <ul className="subMenu">
               <li>
                 <NavLink to={`${path}/social`} onClick={addParentActive}>
@@ -67,7 +69,9 @@ const TopMenu = () => {
           </li>
 
           <li className="has-subMenu">
-            <Link className="parent">Apps</Link>
+            <Link to="#" className="parent">
+              Apps
+            </Link>
             <ul className="subMenu">
               <li>
                 <NavLink onClick={addParentActive} to={`${path}/app/calendar/month`}>
@@ -88,7 +92,7 @@ const TopMenu = () => {
                 </NavLink>
               </li>
               <li className="has-subMenu-left">
-                <Link className="parent">
+                <Link to="#" className="parent">
                   <FeatherIcon icon="shopping-cart" />
                   eComerce
                 </Link>
@@ -136,7 +140,7 @@ const TopMenu = () => {
                 </ul>
               </li>
               <li className="has-subMenu-left">
-                <Link className="parent">
+                <Link to="#" className="parent">
                   <FeatherIcon icon="mail" />
                   Email
                 </Link>
@@ -160,7 +164,7 @@ const TopMenu = () => {
                 </NavLink>
               </li>
               <li className="has-subMenu-left">
-                <Link className="parent">
+                <Link to="#" className="parent">
                   <FeatherIcon icon="user" />
                   Social App
                 </Link>
@@ -186,7 +190,9 @@ const TopMenu = () => {
             </ul>
           </li>
           <li className="mega-item has-subMenu">
-            <Link className="parent">Pages</Link>
+            <Link to="#" className="parent">
+              Pages
+            </Link>
             <ul className="megaMenu-wrapper megaMenu-small">
               <li>
                 <ul>
@@ -264,7 +270,9 @@ const TopMenu = () => {
             </ul>
           </li>
           <li className="mega-item has-subMenu">
-            <Link className="parent">Components</Link>
+            <Link to="#" className="parent">
+              Components
+            </Link>
             <ul className="megaMenu-wrapper megaMenu-wide">
               <li>
                 <span className="mega-title">Components</span>
@@ -485,6 +493,11 @@ const TopMenu = () => {
                     </NavLink>
                   </li>
                   <li>
+                    <NavLink onClick={addParentActive} to={`${path}/components/starter`}>
+                      Starter
+                    </NavLink>
+                  </li>
+                  <li>
                     <NavLink onClick={addParentActive} to={`${path}/components/steps`}>
                       Steps
                     </NavLink>
@@ -529,10 +542,12 @@ const TopMenu = () => {
             </ul>
           </li>
           <li className="has-subMenu">
-            <Link className="parent">Features</Link>
+            <Link to="#" className="parent">
+              Features
+            </Link>
             <ul className="subMenu">
               <li className="has-subMenu-left">
-                <Link className="parent">
+                <Link to="#" className="parent">
                   <FeatherIcon icon="grid" />
                   Icons
                 </Link>
@@ -555,7 +570,7 @@ const TopMenu = () => {
                 </ul>
               </li>
               <li className="has-subMenu-left">
-                <Link className="parent">
+                <Link to="#" className="parent">
                   <FeatherIcon icon="bar-chart-2" />
                   Charts
                 </Link>
@@ -569,7 +584,7 @@ const TopMenu = () => {
                     <NavLink to={`${path}/charts/google-chart`}>Google Chart</NavLink>
                   </li>
                   <li className="has-subMenu-left">
-                    <Link>Rechart</Link>
+                    <Link to="#">Rechart</Link>
                     <ul className="subMenu">
                       <li>
                         <NavLink onClick={addParentActive} to={`${path}/charts/recharts/bar`}>
@@ -628,7 +643,7 @@ const TopMenu = () => {
                 </NavLink>
               </li>
               <li className="has-subMenu-left">
-                <Link className="parent">
+                <Link to="#" className="parent">
                   <FeatherIcon icon="map" />
                   Maps
                 </Link>

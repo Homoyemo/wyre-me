@@ -37,9 +37,9 @@ const CustomizedDot = props => {
   );
 };
 CustomizedDot.propTypes = {
-  cx: PropTypes.number.isRequired,
-  cy: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
+  cx: PropTypes.number,
+  cy: PropTypes.number,
+  value: PropTypes.number,
 };
 const ReChartLine = () => {
   const [state, setState] = useState({

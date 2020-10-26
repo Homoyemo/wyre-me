@@ -31,7 +31,7 @@ const ExampleComment = ({ children }) => (
 );
 
 ExampleComment.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
 
 const Comments = () => {

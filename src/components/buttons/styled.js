@@ -31,7 +31,7 @@ const ghosts = theme => {
       `;
 };
 
-const transparent = (theme, type) => {
+const transparents = (theme, type) => {
   return `
         background: ${type !== 'default' && theme[`${type}-color`]}15;
         border-width: 0px;
@@ -97,40 +97,40 @@ const socialButton = (color, shape) => `
   `;
 
 const ButtonStyled = Styled(Button)`
-background: ${({ type, theme }) => type !== 'default' && theme[`${type}-color`]};
-border-width: 0px;
-/* border-color: ${({ type, theme }) => (type !== 'default' ? theme[`${type}-color`] : theme[`${type}-color`])}; */
-border-style: ${({ type }) => (type !== 'dashed' ? 'solid' : 'dashed')};
-color: ${({ type }) => (type !== 'default' ? '#ffffff' : '#5A5F7D')};
-display: inline-flex;
-align-items: center;
-justify-content: center;
-border-radius: ${({ shape }) => (!shape ? '4px' : '40px')};
-padding: 0px 20.5px;
-height: ${({ size, theme }) => (size !== 'default' ? theme[`btn-height-${size}`] : '42px')};
-font-weight: 500;
-box-shadow: 0 0;
-&:hover, &:focus {
-    background: ${({ type, theme }) => type !== 'default' && theme[`${type}-hover`]};
-    color: ${({ type }) => (type !== 'default' ? '#ffffff' : '#5A5F7D')};
-}
-i,
-svg,
-img{
-    width: 16px;
-    height: 16px;
-    +span{
-        ${({ theme }) => (theme.rtl ? 'margin-right' : 'margin-left')}: 6px;
-    }
-}
 
-${({ outlined, theme, type }) => outlined && outline(theme, type)}
-${({ ghost, theme }) => ghost && ghosts(theme)}
-${({ transparented, theme, type }) => transparented && transparent(theme, type)}
-${({ raised, theme, type }) => raised && raise(theme, type)}
-${({ squared, theme, type }) => squared && square(theme, type)}
-${({ squared, outlined, theme, type }) => squared && outlined && squareOutline(theme, type)}
-${({ social, color, shape }) => social && socialButton(color, shape)}
+    background: ${({ type, theme }) => type !== 'default' && theme[`${type}-color`]};
+    border-width: 0px;
+    border-style: ${({ type }) => (type !== 'dashed' ? 'solid' : 'dashed')};
+    color: ${({ type }) => (type !== 'default' ? '#ffffff' : '#5A5F7D')};
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: ${({ shape }) => (!shape ? '4px' : '40px')};
+    padding: 0px 20.5px;
+    height: ${({ size, theme }) => (size !== 'default' ? theme[`btn-height-${size}`] : '42px')};
+    font-weight: 500;
+    box-shadow: 0 0;
+    &:hover, &:focus {
+        background: ${({ type, theme }) => type !== 'default' && theme[`${type}-hover`]};
+        color: ${({ type }) => (type !== 'default' ? '#ffffff' : '#5A5F7D')};
+    }
+    i,
+    svg,
+    img{
+        width: 16px;
+        height: 16px;
+        +span{
+            ${({ theme }) => (theme.rtl ? 'margin-right' : 'margin-left')}: 6px;
+        }
+    }
+
+    ${({ transparent, theme, type }) => transparent && transparents(theme, type)};
+    ${({ outlined, theme, type }) => outlined && outline(theme, type)};
+    ${({ ghost, theme }) => ghost && ghosts(theme)};
+    ${({ raised, theme, type }) => raised && raise(theme, type)};
+    ${({ squared, theme, type }) => squared && square(theme, type)};
+    ${({ squared, outlined, theme, type }) => squared && outlined && squareOutline(theme, type)};
+    ${({ social, color, shape }) => social && socialButton(color, shape)};
 `;
 
 const ButtonStyledGroup = Styled(ButtonGroup)`
