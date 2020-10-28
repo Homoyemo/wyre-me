@@ -2213,4 +2213,14 @@ html[dir='rtl'] .ant-menu-vertical .ant-menu-submenu-title {
 .auth0-lock.auth0-lock .auth0-lock-header-logo {  
   width: 180px !important;
   margin: 0 !important;
+  display: none !important;
+}
+
+.auth0-lock.auth0-lock .auth0-lock-name{
+  font-size: 18px !important;
+}
+
+.auth0-lock.auth0-lock .auth0-lock-close-button, .auth0-lock.auth0-lock .auth0-lock-back-button {   
+    box-shadow: none !important;   
+    padding: 2px !important;
 }

@@ -34,8 +34,8 @@ const SignIn = () => {
     setState({ ...state, checked });
   };
 
-  lock.on('authenticated', function(authResult) {
-    lock.getUserInfo(authResult.accessToken, function(error, profileResult) {
+  lock.on('authenticated', authResult => {
+    lock.getUserInfo(authResult.accessToken, (error, profileResult) => {
       if (error) {
         return;
       }
@@ -77,9 +77,6 @@ const SignIn = () => {
               {isLoading ? 'Loading...' : 'Sign In'}
             </Button>
           </Form.Item>
-          <Button className="btn-signin" type="primary" size="large" htmlType="button" onClick={() => lock.show()}>
-            Sign in with Auth0
-          </Button>
           <p className="form-divider">
             <span>Or</span>
           </p>
@@ -101,6 +98,11 @@ const SignIn = () => {
               </Link>
             </li>
           </ul>
+          <div className="auth0-login">
+            <Link to="#" onClick={() => lock.show()}>
+              Sign In with Auth0
+            </Link>
+          </div>
         </Form>
       </div>
     </AuthWrapper>

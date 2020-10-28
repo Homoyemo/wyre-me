@@ -224,6 +224,31 @@ const AuthWrapper = Styled.div`
       }
     }
   }
+  .auth0-login{
+      margin: -6px;
+      display: flex;
+      flex-wrap: wrap;
+      a{
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 6px;
+          height: 48px;
+          padding: 0 30px;
+          background: ${({ theme }) => theme['bg-color-light']};
+          color: ${({ theme }) => theme['text-color']};
+          font-weight: 500;
+          border: 0 none;
+          border-radius: 5px;
+          margin: 6px;
+          flex: 1;
+          @media (max-width:480px){
+            flex: none;
+            width: 100%;
+          }
+      }
+    }
+  }
 `;
 
 export { Aside, Content, AuthWrapper };
