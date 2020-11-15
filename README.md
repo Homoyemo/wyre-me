@@ -1,3 +1,11 @@
+npm node install 
+i.e installs all the dependencies for the app
+and yarn start
+
+
+
+
+
 # wyre
 
 Progress made
@@ -9,3 +17,6 @@ The other components are easily accesible
 -Want to adjust the width at which mobile view comes up
 -Little finishing touches as to the modal position.
 Would finish dashboard in the next few days
+
+
+
